@@ -4,15 +4,14 @@ import org.example.annotation.DbContainer;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.TestInstancePostProcessor;
 import org.testcontainers.containers.GenericContainer;
+import org.testcontainers.containers.Network;
+import org.testcontainers.containers.wait.strategy.Wait;
 import org.testcontainers.utility.DockerImageName;
+import org.testcontainers.utility.MountableFile;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Map;
-
-import static org.testcontainers.containers.Network.SHARED;
-import static org.testcontainers.containers.wait.strategy.Wait.forListeningPort;
-import static org.testcontainers.utility.MountableFile.forClasspathResource;
 
 public class DbContainerExtension implements TestInstancePostProcessor {
 
@@ -33,9 +32,9 @@ public class DbContainerExtension implements TestInstancePostProcessor {
         return new GenericContainer<>(DockerImageName.parse(containerAnnotation.image()))
                 .withEnv(Map.of("POSTGRES_PASSWORD", containerAnnotation.password()))
                 .withCopyFileToContainer(
-                        forClasspathResource(containerAnnotation.copiedResourceName()), "/docker-entrypoint-initdb.d/")
+                        MountableFile.forClasspathResource(containerAnnotation.copiedResourceName()), "/docker-entrypoint-initdb.d/")
                 .withExposedPorts(Arrays.stream(containerAnnotation.exposedPorts()).boxed().toArray(Integer[]::new))
-                .withNetwork(SHARED)
-                .waitingFor(forListeningPort());
+                .withNetwork(Network.SHARED)
+                .waitingFor(Wait.forListeningPort());
     }
 }
