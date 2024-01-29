@@ -1,7 +1,5 @@
 package org.example;
 
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
-
 import javax.sql.DataSource;
 
 public class DataSourceFactory {
@@ -29,12 +27,6 @@ public class DataSourceFactory {
     }
 
     public DataSource build() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(config.getDriverClassName());
-        dataSource.setUrl(config.getUrl());
-        dataSource.setUsername(config.getUsername());
-        dataSource.setPassword(config.getPassword());
-
-        return dataSource;
+        return DataSourceContext.INSTANCE.getDataSource(config);
     }
 }
