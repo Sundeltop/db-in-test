@@ -2,26 +2,26 @@ package org.example;
 
 import javax.sql.DataSource;
 
-public class DataSourceFactory {
+public class DataSourceBuilder {
 
     private final DataSourceConfig config = new DataSourceConfig();
 
-    public DataSourceFactory postgres() {
+    public DataSourceBuilder postgres() {
         config.setDriverClassName("org.postgresql.Driver");
         return this;
     }
 
-    public DataSourceFactory password(String password) {
+    public DataSourceBuilder password(String password) {
         config.setPassword(password);
         return this;
     }
 
-    public DataSourceFactory username(String username) {
+    public DataSourceBuilder username(String username) {
         config.setUsername(username);
         return this;
     }
 
-    public DataSourceFactory url(String url) {
+    public DataSourceBuilder url(String url) {
         config.setUrl(url);
         return this;
     }

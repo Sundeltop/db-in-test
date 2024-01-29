@@ -26,7 +26,7 @@ public class JdbcTemplateTest {
 
     @BeforeEach
     void setupConnection() {
-        jdbcTemplate = new JdbcTemplate(new DataSourceFactory()
+        jdbcTemplate = new JdbcTemplate(new DataSourceBuilder()
                 .postgres()
                 .url("jdbc:postgresql://localhost:%d/postgres".formatted(container.getFirstMappedPort()))
                 .username(DB_USERNAME)
