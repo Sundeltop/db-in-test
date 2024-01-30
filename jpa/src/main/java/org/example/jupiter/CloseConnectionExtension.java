@@ -1,10 +1,9 @@
 package org.example.jupiter;
 
+import jakarta.persistence.EntityManagerFactory;
 import org.example.emf.EntityManagerFactoryContext;
 import org.junit.jupiter.api.extension.BeforeAllCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
-
-import javax.persistence.EntityManagerFactory;
 
 import static org.junit.jupiter.api.extension.ExtensionContext.Namespace;
 import static org.junit.jupiter.api.extension.ExtensionContext.Store;

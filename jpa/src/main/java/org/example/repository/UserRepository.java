@@ -1,8 +1,8 @@
 package org.example.repository;
 
+import jakarta.persistence.EntityManager;
 import org.example.dto.User;
 
-import javax.persistence.EntityManager;
 
 public class UserRepository extends JpaRepository {
 

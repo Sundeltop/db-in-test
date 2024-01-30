@@ -1,11 +1,13 @@
 package org.example.emf;
 
-import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.metamodel.Metamodel;
+
+import jakarta.persistence.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.metamodel.Metamodel;
+
 import java.util.Map;
 
-import static javax.persistence.SynchronizationType.SYNCHRONIZED;
+import static jakarta.persistence.SynchronizationType.SYNCHRONIZED;
 
 public class ThreadSafeEntityManagerFactory implements EntityManagerFactory {
 
