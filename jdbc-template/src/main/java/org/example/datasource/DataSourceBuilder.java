@@ -1,4 +1,6 @@
-package org.example;
+package org.example.datasource;
+
+import org.example.datasource.config.DataSourceConfig;
 
 import javax.sql.DataSource;
 

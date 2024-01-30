@@ -2,6 +2,7 @@ package org.example;
 
 import org.example.annotation.DbContainer;
 import org.example.annotation.DbTestcontainers;
+import org.example.datasource.DataSourceBuilder;
 import org.example.dto.User;
 import org.example.mapper.UserMapper;
 import org.junit.jupiter.api.BeforeEach;

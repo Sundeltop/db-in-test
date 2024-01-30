@@ -1,7 +1,6 @@
-package org.example;
+package org.example.datasource;
 
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
+import org.example.datasource.config.DataSourceConfig;
 
 import javax.sql.DataSource;
 
@@ -30,12 +29,6 @@ public class DataSourceFactory {
     }
 
     public DataSource build() {
-        HikariConfig hikariConfig = new HikariConfig();
-        hikariConfig.setDriverClassName(config.getDriverClassName());
-        hikariConfig.setJdbcUrl(config.getUrl());
-        hikariConfig.setUsername(config.getUsername());
-        hikariConfig.setPassword(config.getPassword());
-
-        return new HikariDataSource(hikariConfig);
+        return DataSourceContext.INSTANCE.getDataSource(config);
     }
 }
