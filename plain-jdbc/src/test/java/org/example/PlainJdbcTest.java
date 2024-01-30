@@ -2,7 +2,7 @@ package org.example;
 
 import org.example.annotation.DbContainer;
 import org.example.annotation.DbTestcontainers;
-import org.example.datasource.DataSourceFactory;
+import org.example.datasource.DataSourceBuilder;
 import org.example.dto.User;
 import org.example.mapper.UserMapper;
 import org.example.repository.UserRepository;
@@ -27,7 +27,7 @@ public class PlainJdbcTest {
 
     @BeforeEach
     void setupConnection() {
-        repository = new UserRepository(new DataSourceFactory()
+        repository = new UserRepository(new DataSourceBuilder()
                 .postgres()
                 .url("jdbc:postgresql://localhost:%d/postgres".formatted(container.getFirstMappedPort()))
                 .username(DB_USERNAME)
