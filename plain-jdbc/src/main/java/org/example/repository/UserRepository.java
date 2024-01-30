@@ -1,4 +1,4 @@
-package org.example;
+package org.example.repository;
 
 import lombok.SneakyThrows;
 import org.example.mapper.AbstractResultSetMapper;

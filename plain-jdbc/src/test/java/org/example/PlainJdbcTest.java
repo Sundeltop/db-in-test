@@ -2,8 +2,10 @@ package org.example;
 
 import org.example.annotation.DbContainer;
 import org.example.annotation.DbTestcontainers;
+import org.example.datasource.DataSourceFactory;
 import org.example.dto.User;
 import org.example.mapper.UserMapper;
+import org.example.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.GenericContainer;
