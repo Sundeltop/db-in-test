@@ -1,13 +1,14 @@
-package org.example;
+package org.example.datasource;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import org.example.datasource.config.DataSourceConfig;
 
 import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
 
-enum DataSourceContext {
+public enum DataSourceContext {
     INSTANCE;
 
     private final Map<DataSourceConfig, DataSource> store = new HashMap<>();
