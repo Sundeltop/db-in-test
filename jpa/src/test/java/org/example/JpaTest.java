@@ -2,6 +2,7 @@ package org.example;
 
 import org.example.annotation.DbContainer;
 import org.example.annotation.DbTestcontainers;
+import org.example.dto.User;
 import org.example.emf.EntityManagerFactoryBuilder;
 import org.example.jupiter.CloseConnectionExtension;
 import org.example.repository.UserRepository;
@@ -10,12 +11,17 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testcontainers.containers.GenericContainer;
 
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 @ExtendWith(CloseConnectionExtension.class)
 @DbTestcontainers
 public class JpaTest {
 
     private static final String DB_USERNAME = "postgres";
     private static final String DB_PASSWORD = "secret";
+    private static final String EXPECTED_USER_NAME = "Peter";
     private static final String PERSISTENCE_UNIT_NAME = "test";
 
     private UserRepository userRepository;
@@ -37,11 +43,17 @@ public class JpaTest {
 
     @Test
     void verifyCreateUser() {
-        userRepository.addUser("Tom");
+        userRepository.addUser(EXPECTED_USER_NAME);
+
+        List<User> users = userRepository.getUsersByName(EXPECTED_USER_NAME);
+        assertThat(users).first().extracting(User::getName).isEqualTo(EXPECTED_USER_NAME);
     }
 
     @Test
     void verifyUpdateUser() {
-        userRepository.updateUserById(1, "Jack");
+        userRepository.updateUserById(1, EXPECTED_USER_NAME);
+
+        List<User> users = userRepository.getUsersByName(EXPECTED_USER_NAME);
+        assertThat(users).first().extracting(User::getName).isEqualTo(EXPECTED_USER_NAME);
     }
 }
