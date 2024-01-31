@@ -12,6 +12,7 @@
         <module>jdbc-template</module>
         <module>db-testcontainers</module>
         <module>plain-jdbc</module>
+        <module>jpa</module>
     </modules>
 
     <properties>
